@@ -16,6 +16,18 @@ module.exports = {
         return res.json(flavorBrand);
     },
 
+    
+    async indexOne(req, res){
+        const {flavor_id} = req.params;
+        const flavor = await Flavors.findOne({
+            where: {
+                id: flavor_id
+            }
+        })
+
+        return res.json(flavor);
+    },
+
     async indexAll(req, res){
         const flavors = await Flavors.findAll();
         return res.json(flavors);
@@ -35,5 +47,30 @@ module.exports = {
         const flavors = await Flavors.create({name, created_by, flavor_brand_id});
 
         return res.json(flavors);
-    }
+    },
+
+    async remove(req, res){
+        const {flavor_id} = req.params;
+        const flavors = await Flavors.destroy({
+            where:{
+                id: flavor_id
+            }
+        });
+        return res.status(204).json({success: 'Flavor deleted'})
+    },
+    async update(req, res){
+        const {flavor_id} = req.params;
+        const {name} = req.body;
+        const flavors = await Flavors.update(
+            {
+                name
+            },
+            {
+                where:{
+                    id: flavor_id
+                }
+            }
+        );
+        return res.json(flavors);
+    },
 }
