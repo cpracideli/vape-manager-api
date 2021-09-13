@@ -10,6 +10,7 @@ routes.get('/', (req,res) => {
 
 //flavorBrands Routes
 routes.get('/flavorBrands', FlavorBrandsController.index);
+routes.get('/caio', FlavorBrandsController.index);
 routes.post('/flavorBrands', FlavorBrandsController.store);
 
 //flavors Routes
