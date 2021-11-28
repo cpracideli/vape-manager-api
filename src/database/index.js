@@ -1,8 +1,9 @@
 const Sequelize = require('sequelize');
 const dbConfig = require('../config/database');
 
-const FlavorBrands = require('../models/FlavorBrands')
-const Flavors = require('../models/Flavors')
+const FlavorBrands = require('../models/FlavorBrands');
+const Flavors = require('../models/Flavors');
+const Recipes = require('../models/Recipes');
 
 const connection = new Sequelize(dbConfig);
 //console.log(connection);
@@ -10,7 +11,7 @@ const connection = new Sequelize(dbConfig);
 //init models
 FlavorBrands.init(connection);
 Flavors.init(connection);
-
+Recipes.init(connection);
 //associate models (set FK)
 FlavorBrands.associate(connection.models);
 Flavors.associate(connection.models);

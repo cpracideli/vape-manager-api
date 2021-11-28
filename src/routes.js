@@ -1,12 +1,12 @@
+const { Router } = require('express');
 const express = require('express');
 const FlavorBrandsController = require('./controllers/FlavorBrandsController')
 const FlavorsController = require('./controllers/FlavorsController')
+const RecipesController = require('./controllers/RecipesController')
 
 const routes = express.Router();
 
-routes.get('/', (req,res) => {
-    return res.json({hello: 'World'});
-});
+
 
 //==========flavorBrands Routes==========
 routes.get('/flavorBrands', FlavorBrandsController.index); //get all
@@ -23,9 +23,22 @@ routes.delete('/flavors/:flavor_id', FlavorsController.remove) //delete flavor
 routes.patch('/flavors/:flavor_id', FlavorsController.update ) //update flavor
 
 //==========Recipes==========
-routes.get('/recipes/', (req, res) => res.json([{name: "recipe 1"}, {name: "recipe 2"}]))
+routes.get('/recipes', RecipesController.index); //get all
+routes.post('/recipes', RecipesController.store); //create new flavor brand
+routes.delete('/recipes/:recipe_id', RecipesController.remove); //delete flavor brand
+routes.patch('/recipes/:recipe_id', RecipesController.update); //update flavor brand
+
+// routes.get('/recipes/', (req, res) => res.json([{name: "recipe 1"}, {name: "recipe 2"}])) //get all
+// routes.get('/recipes/', (req, res) => res.json([{name: "recipe 1"}, {name: "recipe 2"}])) //get one
+// routes.post('/recipes/', FlavorsController.store); //create recipe
+// routes.delete('/recipes/:recipe_id', FlavorsController.remove) //delete recipe
+// routes.patch('/recipes/:recipe_id', FlavorsController.update ) //update recipe
 
 //==========Flavors Recipe==========
 
+
+routes.get('/', (req,res) => {
+    return res.json({endpoints: routes.stack});
+});
 
 module.exports = routes;
