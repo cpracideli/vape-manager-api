@@ -7,7 +7,6 @@ const RecipesController = require('./controllers/RecipesController')
 const routes = express.Router();
 
 
-
 //==========flavorBrands Routes==========
 routes.get('/flavorBrands', FlavorBrandsController.index); //get all
 routes.post('/flavorBrands', FlavorBrandsController.store); //create new flavor brand
