@@ -10,13 +10,17 @@ module.exports = {
         return res.json(recipes);
     },
 
-    //create new flavor brand
-    //              name: DataTypes.STRING,
-    //              img_url:DataTypes.STRING,
-    //              description: DataTypes.STRING,
-    //              stepping_days: DataTypes.INTEGER,
-    //              owner_rating: DataTypes.INTEGER,
-    //              created_by: DataTypes.STRING
+    async indexOne(req, res){
+        const {recipe_id} = req.params;
+        const recipe = await Recipes.findOne({
+            where: {
+                id: recipe_id
+            }
+        })
+
+        return res.json(recipe);
+    },
+
     async store(req, res) {
         const {
             name,
@@ -27,7 +31,7 @@ module.exports = {
             created_by
         } = req.body;
 
-        const recipes = await Recipes.create({ 
+        const recipes = await Recipes.create({
             name,
             img_url,
             description,
@@ -54,7 +58,8 @@ module.exports = {
             description,
             stepping_days,
             owner_rating } = req.body;
-        const flavors = await FlavorBrands.update(
+
+        const recipes = await Recipes.update(
             {
                 name,
                 img_url,
@@ -68,6 +73,6 @@ module.exports = {
                 }
             }
         );
-        return res.json(flavors);
+        return res.json(recipes);
     },
 }

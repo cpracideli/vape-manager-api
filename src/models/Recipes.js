@@ -20,8 +20,8 @@ class Recipe extends Model {
         )
     }
 
-    // static associate(models) {
-    //     this.hasMany(models.RecipeFlavor, { foreignKey: 'recipes_id', as: 'recipe_flavors' });
-    // }
+    static associate(models) {
+        this.hasMany(models.RecipeFlavor, { foreignKey: 'recipe_id', as: 'recipe_flavors' });
+    }
 }
 module.exports = Recipe;
